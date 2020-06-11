@@ -5,7 +5,14 @@ Promise.all([
   faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
   faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-]).then(startVideo);
+])
+  .then(removeLoadingText)
+  .then(startVideo);
+
+function removeLoadingText() {
+  const loadingText = document.getElementById("loading-text");
+  loadingText.style.display = "none";
+}
 
 function startVideo() {
   navigator.getUserMedia(
